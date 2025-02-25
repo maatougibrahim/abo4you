@@ -156,7 +156,7 @@ export default function Page() {
 
       <TawkMessengerReact
         propertyId="67be12d987b472191189bb6f"
-        widgetId="i28e5w4gs"
+        widgetId="1ikv7j8uq"
         ref={tawkMessengerRef}
         onLoad={onTawkLoad}
       />
