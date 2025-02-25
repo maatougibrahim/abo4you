@@ -65,8 +65,7 @@ export default function Page() {
             href="/" 
             className={`text-[#00E8DD] text-3xl ${figtree.className} flex items-center gap-2`}
           >
-            <span className="font-extrabold tracking-tight">share</span>
-            <span className="font-extrabold">it</span>
+            <span className="font-extrabold tracking-tight">abo4you</span>
           </Link>
 
           {/* Navigation */}
