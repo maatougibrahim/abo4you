@@ -37,7 +37,11 @@ interface ServiceSectionProps {
   color: string
 }
 
-const ServiceCarousel = forwardRef((props, ref) => {
+interface ServiceCarouselProps {
+  selectedCategory: string | null;
+}
+
+const ServiceCarousel = forwardRef<HTMLDivElement, ServiceCarouselProps>(({ selectedCategory }, ref) => {
   const [filteredSubscriptions, setFilteredSubscriptions] = useState(allSubscriptions)
 
   useImperativeHandle(ref, () => ({
@@ -112,7 +116,8 @@ const ServiceCarousel = forwardRef((props, ref) => {
   )
 
   return (
-    <div>
+    <div ref={ref}>
+      {selectedCategory && <p>Selected Category: {selectedCategory}</p>}
       {Object.entries(groupedSubscriptions).map(([category, services]) => (
         <ServiceSection 
           key={category}

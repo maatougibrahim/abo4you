@@ -8,6 +8,8 @@ import ServiceCarousel from "./service-carousel"
 import { Search } from "@/components/search"
 import { useState, useRef } from "react"
 import { Syne, Orbitron, Audiowide, Exo_2, Chakra_Petch, Russo_One, Figtree } from 'next/font/google'
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+import { useUserStore } from "./stores/userStore";
 
 const syne = Syne({ 
   subsets: ['latin'],
@@ -41,8 +43,15 @@ const figtree = Figtree({
   weight: ['800', '400']
 })
 
+// Define the type for the Tawk Messenger ref
+interface TawkMessengerRef {
+  minimize: () => void;
+}
+
 export default function Page() {
   const carouselRef = useRef(null)
+  const tawkMessengerRef = useRef<TawkMessengerRef>(null)
+  const { userData } = useUserStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const handleSearch = (query: string) => {
@@ -55,6 +64,39 @@ export default function Page() {
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category)
   }
+
+  const handleMinimize = () => {
+    tawkMessengerRef.current?.minimize();
+  };
+
+  const onTawkLoad = () => {
+    console.log("Tawk.to widget loaded");
+
+    if (window.Tawk_API) {
+      const userName = userData.full_name;
+      const userEmail = userData.email;
+      const userPhone = userData.phone_number;
+
+      window.Tawk_API.setAttributes({
+        name: userName,
+        email: userEmail,
+        phone: userPhone,
+      }, function (error: any) {
+        if (error) {
+          console.error("Error setting Tawk.to user details:", error);
+        } else {
+          console.log("User details successfully sent to Tawk.to");
+        }
+      });
+
+      window.Tawk_API.visitor = {
+        name: userName,
+        email: userEmail,
+      };
+    } else {
+      console.error("Tawk_API is not available");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#1a0f40]">
@@ -111,6 +153,13 @@ export default function Page() {
           <ServiceCarousel ref={carouselRef} selectedCategory={selectedCategory} />
         </div>
       </main>
+
+      <TawkMessengerReact
+        propertyId="67be12d987b472191189bb6f"
+        widgetId="i28e5w4gs"
+        ref={tawkMessengerRef}
+        onLoad={onTawkLoad}
+      />
     </div>
   )
 }
