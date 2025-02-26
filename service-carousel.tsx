@@ -10,6 +10,11 @@ interface Subscription {
   category: string
 }
 
+// Define the type for the ref
+interface ServiceCarouselRef {
+  filterServices: (query: string) => void;
+}
+
 const allSubscriptions: Subscription[] = [
   // SVOD
   { name: "YouTube Premium", price: 5.54, startingFrom: false, category: "svod" },
@@ -41,7 +46,8 @@ interface ServiceCarouselProps {
   selectedCategory: string | null;
 }
 
-const ServiceCarousel = forwardRef<HTMLDivElement, ServiceCarouselProps>(({ selectedCategory }, ref) => {
+// Correctly type the ref in forwardRef
+const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ selectedCategory }, ref) => {
   const [filteredSubscriptions, setFilteredSubscriptions] = useState(allSubscriptions)
 
   useImperativeHandle(ref, () => ({
@@ -116,7 +122,7 @@ const ServiceCarousel = forwardRef<HTMLDivElement, ServiceCarouselProps>(({ sele
   )
 
   return (
-    <div ref={ref}>
+    <div>
       {selectedCategory && <p>Selected Category: {selectedCategory}</p>}
       {Object.entries(groupedSubscriptions).map(([category, services]) => (
         <ServiceSection 
