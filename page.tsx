@@ -116,14 +116,11 @@ export default function Page() {
               <Grid className="h-6 w-6" />
               <span className="text-sm">Accueil</span>
             </Link>
-            <Link href="/explorer" className="flex flex-col items-center text-[#00E8DD]">
+            <Link href="/explorer" className="flex flex-col items-center text-white/80 hover:text-white">
               <SearchIcon className="h-6 w-6" />
-              <span className="text-sm">Explorer</span>
+              <span className="text-sm">À propos de nous</span>
             </Link>
-            <Link href="/messagerie" className="flex flex-col items-center text-white/80 hover:text-white">
-              <MessageSquare className="h-6 w-6" />
-              <span className="text-sm">Messagerie</span>
-            </Link>
+
           </div>
         </div>
 
