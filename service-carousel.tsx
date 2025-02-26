@@ -124,7 +124,7 @@ const ServiceCarousel = forwardRef<HTMLDivElement, ServiceCarouselProps>(({ sele
           title={category === "svod" ? "Vidéo" : category === "music" ? "Musique" : "Sécurité"}
           icon={category === "svod" ? Popcorn : category === "music" ? Music2 : Lock}
           services={services}
-          color={category === "svod" ? "text-[#FF4B81]" : category === "music" ? "text-[#00E8DD]" : "text-[#6366f1]"}
+          color={category === "svod" ? "text-[#FF4B81]" : category === "music" ? "text-[#FF4B81]" : "text-[#FF4B81]"}
         />
       ))}
     </div>
