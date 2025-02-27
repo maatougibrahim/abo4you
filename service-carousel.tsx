@@ -44,10 +44,11 @@ interface ServiceSectionProps {
 
 interface ServiceCarouselProps {
   selectedCategory: string | null;
+  language: string;
 }
 
 // Correctly type the ref in forwardRef
-const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ selectedCategory }, ref) => {
+const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ selectedCategory, language }, ref) => {
   const [filteredSubscriptions, setFilteredSubscriptions] = useState(allSubscriptions)
 
   useImperativeHandle(ref, () => ({
@@ -88,7 +89,7 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
               className="group w-1/4 overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
             >
               {/* Top part with service name - centered - smaller height */}
-              <div className="flex h-20 items-center justify-center p-6">
+              <div className="flex h-16 items-center justify-center p-4">
                 <h3 className="text-center text-xl font-bold">{service.name}</h3>
               </div>
               
@@ -102,7 +103,7 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
                 />
                 
                 {/* Price section - increased top padding to move price lower */}
-                <div className="pt-8 pb-6 px-6">
+                <div className="pt-4 pb-6 px-6">
                   <div className="flex flex-col items-center gap-1 text-white">
                     <div className="flex items-center">
                       <span className="text-2xl font-semibold">
@@ -111,6 +112,18 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
                       <Euro className="h-5 w-5 ml-1" />
                     </div>
                     <span className="text-sm text-white/80">/mois</span>
+                    {/* Join Button */}
+                    <button 
+                      className="mt-2 rounded bg-[#00E8DD] px-4 py-2 text-white hover:bg-[#00B2B2]"
+                      onClick={() => {
+                        // Open or minimize Tawk.to chat
+                        if (window.Tawk_API) {
+                          window.Tawk_API.toggle(); // This will open the chat
+                        }
+                      }}
+                    >
+                      Rejoindre
+                    </button>
                   </div>
                 </div>
               </div>
@@ -127,7 +140,7 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
       {Object.entries(groupedSubscriptions).map(([category, services]) => (
         <ServiceSection 
           key={category}
-          title={category === "svod" ? "Vidéo" : category === "music" ? "Musique" : "Sécurité"}
+          title={language === "en" ? (category === "svod" ? "Video" : category === "music" ? "Music" : "Security") : (category === "svod" ? "Vidéo" : category === "music" ? "Musique" : "Sécurité")}
           icon={category === "svod" ? Popcorn : category === "music" ? Music2 : Lock}
           services={services}
           color={category === "svod" ? "text-[#FF4B81]" : category === "music" ? "text-[#FF4B81]" : "text-[#FF4B81]"}

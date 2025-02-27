@@ -1,7 +1,6 @@
 "use client"
 
 import { Grid, MessageSquare, Search as SearchIcon } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import CategoryNav from "./category-nav"
 import ServiceCarousel from "./service-carousel"
@@ -53,6 +52,7 @@ export default function Page() {
   const tawkMessengerRef = useRef<TawkMessengerRef>(null)
   const { userData } = useUserStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [language, setLanguage] = useState("en"); // Default language is English
 
   const handleSearch = (query: string) => {
     if (carouselRef.current) {
@@ -98,41 +98,41 @@ export default function Page() {
     }
   };
 
+  const toggleLanguage = () => {
+    setLanguage((prev) => (prev === "en" ? "fr" : "en")); // Toggle between English and French
+  };
+
   return (
     <div className="min-h-screen bg-[#1a0f40]">
-      <header className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className={`text-[#00E8DD] text-3xl ${figtree.className} flex items-center gap-2`}
-          >
-            <span className="font-extrabold tracking-tight">abo4you</span>
-          </Link>
-
-          {/* Navigation */}
-          <div className="flex items-center gap-12">
-            <Link href="/accueil" className="flex flex-col items-center text-white/80 hover:text-white">
-              <Grid className="h-6 w-6" />
-              <span className="text-sm">Accueil</span>
-            </Link>
-            <Link href="/explorer" className="flex flex-col items-center text-white/80 hover:text-white">
-              <SearchIcon className="h-6 w-6" />
-              <span className="text-sm">À propos de nous</span>
-            </Link>
-
-          </div>
+      <header className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-12">
+          {/* Text Logo with Color #00E8DD */}
+          <Link href="/" className="text-[#00E8DD] text-2xl font-bold">Sub4you</Link>
         </div>
 
-        {/* Search */}
-        <div className="relative mx-auto mt-8 max-w-2xl">
-          <SearchIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Rechercher un abonnement"
-            onChange={(e) => handleSearch(e.target.value)}
-            className="w-full rounded-full bg-white/10 py-3 pl-12 pr-12 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00E8DD]"
-          />
+        {/* Navigation Links and Language Toggle */}
+        <div className="flex items-center gap-4">
+          <Link href="/subscriptions" className="flex flex-col items-center text-white/80 hover:text-white">
+            <Grid className="h-6 w-6" />
+            <span className="text-sm">Accueil</span>
+          </Link>
+          
+          <Link href="/about" className="flex flex-col items-center text-white">
+            <SearchIcon className="h-6 w-6" />
+            <span className="text-sm">À propos de nous</span>
+          </Link>
+
+          {/* Language Toggle with Flags */}
+          <button 
+            onClick={toggleLanguage} 
+            className="flex items-center bg-[#1a0f40] px-4 py-2 rounded hover:bg-[#00B2B2]"
+          >
+            {language === "en" ? (
+              <img src="/uk.png" alt="English" className="h-5 w-5 mr-2" />
+            ) : (
+              <img src="/fr.png" alt="Français" className="h-5 w-5 mr-2" />
+            )}
+          </button>
         </div>
       </header>
 
@@ -147,7 +147,7 @@ export default function Page() {
         />
 
         <div className="container mx-auto px-4">
-          <ServiceCarousel ref={carouselRef} selectedCategory={selectedCategory} />
+          <ServiceCarousel ref={carouselRef} selectedCategory={selectedCategory} language={language} />
         </div>
       </main>
 
