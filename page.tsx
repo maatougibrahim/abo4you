@@ -4,55 +4,17 @@ import { Grid, MessageSquare, Search as SearchIcon } from "lucide-react"
 import Link from "next/link"
 import CategoryNav from "./category-nav"
 import ServiceCarousel from "./service-carousel"
-import { Search } from "@/components/search"
 import { useState, useRef } from "react"
-import { Syne, Orbitron, Audiowide, Exo_2, Chakra_Petch, Russo_One, Figtree } from 'next/font/google'
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import { useUserStore } from "./stores/userStore";
 
-const syne = Syne({ 
-  subsets: ['latin'],
-  weight: ['800', '400']
-})
-
-const orbitron = Orbitron({ subsets: ['latin'] })
-
-const audiowide = Audiowide({ 
-  weight: '400',
-  subsets: ['latin'] 
-})
-
-const exo2 = Exo_2({ 
-  subsets: ['latin'],
-  weight: ['800', '400']
-})
-
-const chakraPetch = Chakra_Petch({ 
-  subsets: ['latin'],
-  weight: ['700']
-})
-
-const russoOne = Russo_One({ 
-  weight: '400',
-  subsets: ['latin'] 
-})
-
-const figtree = Figtree({ 
-  subsets: ['latin'],
-  weight: ['800', '400']
-})
-
-// Define the type for the Tawk Messenger ref
-interface TawkMessengerRef {
-  minimize: () => void;
-}
-
 export default function Page() {
   const carouselRef = useRef(null)
-  const tawkMessengerRef = useRef<TawkMessengerRef>(null)
+  const tawkMessengerRef = useRef(null)
   const { userData } = useUserStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [language, setLanguage] = useState("en"); // Default language is English
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
 
   const handleSearch = (query: string) => {
     if (carouselRef.current) {
@@ -61,12 +23,14 @@ export default function Page() {
     }
   }
 
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category)
-  }
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    handleSearch(query); // Call the filter function
+  };
 
-  const handleMinimize = () => {
-    tawkMessengerRef.current?.minimize();
+  const toggleLanguage = () => {
+    setLanguage((prev) => (prev === "en" ? "fr" : "en")); // Toggle between English and French
   };
 
   const onTawkLoad = () => {
@@ -98,19 +62,15 @@ export default function Page() {
     }
   };
 
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "fr" : "en")); // Toggle between English and French
-  };
-
   return (
     <div className="min-h-screen bg-[#1a0f40]">
-      <header className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center gap-12">
           {/* Text Logo with Color #00E8DD */}
           <Link href="/" className="text-[#00E8DD] text-2xl font-bold">Sub4you</Link>
         </div>
 
-        {/* Navigation Links and Language Toggle */}
+        {/* Navigation Links and Language Toggle at the top right */}
         <div className="flex items-center gap-4">
           <Link href="/subscriptions" className="flex flex-col items-center text-white/80 hover:text-white">
             <Grid className="h-6 w-6" />
@@ -135,6 +95,17 @@ export default function Page() {
           </button>
         </div>
       </header>
+
+      {/* Search Bar */}
+      <div className="mb-4 w-full max-w-md mx-auto"> {/* Center the search bar */}
+        <input 
+          type="text" 
+          value={searchQuery} 
+          onChange={handleSearchChange} 
+          placeholder="Rechercher un abonnement"
+          className="border rounded p-2 w-full"
+        />
+      </div>
 
       <CategoryNav />
 
