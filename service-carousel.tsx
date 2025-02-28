@@ -89,8 +89,8 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
               key={service.name} 
               className="group w-1/4 overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
             >
-              {/* Top part with service name - centered - smaller height */}
-              <div className="flex h-16 items-center justify-center p-4">
+              {/* Top part with service name - increased height to prevent cutting off */}
+              <div className="flex h-20 items-center justify-center p-4">
                 <h3 className="text-center text-xl font-bold">{service.name}</h3>
               </div>
               
