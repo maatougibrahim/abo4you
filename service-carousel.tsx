@@ -40,6 +40,7 @@ interface ServiceSectionProps {
   icon: React.ElementType
   services: Subscription[]
   color: string
+  language: string
 }
 
 interface ServiceCarouselProps {
@@ -72,7 +73,7 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
     return acc
   }, {} as Record<string, Subscription[]>)
 
-  const ServiceSection = ({ title, icon: Icon, services, color }: ServiceSectionProps) => (
+  const ServiceSection = ({ title, icon: Icon, services, color, language }: ServiceSectionProps) => (
     <section className="py-8">
       <div className="mb-6 flex items-center">
         <div className="flex items-center gap-2">
@@ -111,7 +112,9 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
                       </span>
                       <Euro className="h-5 w-5 ml-1" />
                     </div>
-                    <span className="text-sm text-white/80">/mois</span>
+                    <span className="text-sm text-white/80">
+                      {language === "en" ? "/month" : "/mois"}
+                    </span>
                     {/* Join Button */}
                     <button 
                       className="mt-2 rounded bg-[#00E8DD] px-4 py-2 text-white hover:bg-[#00B2B2]"
@@ -144,6 +147,7 @@ const ServiceCarousel = forwardRef<ServiceCarouselRef, ServiceCarouselProps>(({ 
           icon={category === "svod" ? Popcorn : category === "music" ? Music2 : Lock}
           services={services}
           color={category === "svod" ? "text-[#FF4B81]" : category === "music" ? "text-[#FF4B81]" : "text-[#FF4B81]"}
+          language={language}
         />
       ))}
     </div>
