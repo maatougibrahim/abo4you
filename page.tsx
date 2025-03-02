@@ -62,12 +62,18 @@ export default function Page() {
     }
   };
 
+  const openChat = () => {
+    if (window.Tawk_API) {
+      window.Tawk_API.toggle(); // This will open the chat
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#1a0f40]">
       <header className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center gap-12">
           {/* Text Logo with Color #00E8DD */}
-          <Link href="/" className="text-[#00E8DD] text-2xl font-bold">Sub4you</Link>
+          <Link href="/" className="text-[#00E8DD] text-3xl font-bold">Sub4you</Link>
         </div>
 
         {/* Language Toggle with Flags */}
@@ -124,16 +130,16 @@ export default function Page() {
           La plateforme qui vous permet de profiter de vos services préférés à moindre coût grâce au partage d'abonnements !
         </p>
         <p className="mt-2">
-          Nous savons que de nombreux abonnements proposent des formules familiales avec plusieurs places disponibles. Mais pourquoi payer plus cher quand vous pouvez partager ces abonnements ? Abo4You vous permet de trouver ou proposer des places individuelles sur des abonnements familiaux à des prix avantageux, tout en respectant les conditions des fournisseurs.
+          Nous savons que de nombreux abonnements proposent des formules familiales avec plusieurs places disponibles. Mais pourquoi payer plus cher quand vous pouvez partager ces abonnements ? Sub4You vous permet de trouver ou proposer des places individuelles sur des abonnements familiaux à des prix avantageux, tout en respectant les conditions des fournisseurs.
         </p>
         <p className="mt-2">
-          Que vous souhaitiez optimiser votre abonnement en partageant des places non utilisées ou que vous cherchiez à accéder à vos services préférés sans payer le plein tarif, Abo4You est la solution idéale.
+          Que vous souhaitiez optimiser votre abonnement en partageant des places non utilisées ou que vous cherchiez à accéder à vos services préférés sans payer le plein tarif, Sub4You est la solution idéale.
         </p>
         <p className="mt-2">
           Nous vous offrons une flexibilité totale : les places sont disponibles avec un paiement mensuel ou pour une plus longue période, selon votre préférence.
         </p>
         <p className="mt-2">
-          📩 Une question ? Besoin d'aide ? Contactez-nous directement via le chat (en bas à droite) ou sur facebook !
+          📩 Une question ? Besoin d'aide ? Contactez-nous directement via le <span onClick={openChat} className="text-blue-400 cursor-pointer">chat</span> (en bas à droite), sur facebook <Link href="https://www.facebook.com/profile.php?id=61573834613741" target="_blank"><img src="/facebook-logo.png" alt="Facebook" className="inline h-9 w-9 ml-0" /></Link> ou par mail à: <a href="mailto:contact@sub4you.be" className="text-blue-400">contact@sub4you.be</a> !
         </p>
         <p className="mt-2">
           Rejoignez-nous dès maintenant et économisez sur vos abonnements ! 🚀
