@@ -117,6 +117,29 @@ export default function Page() {
         </div>
       </main>
 
+      {/* New Section for Welcome Message */}
+      <div className="bg-[#1a0f40] text-white text-center p-6">
+        <h2 className="text-lg font-bold">Bienvenue sur Sub4You</h2>
+        <p className="mt-2">
+          La plateforme qui vous permet de profiter de vos services préférés à moindre coût grâce au partage d'abonnements !
+        </p>
+        <p className="mt-2">
+          Nous savons que de nombreux abonnements proposent des formules familiales avec plusieurs places disponibles. Mais pourquoi payer plus cher quand vous pouvez partager ces abonnements ? Abo4You vous permet de trouver ou proposer des places individuelles sur des abonnements familiaux à des prix avantageux, tout en respectant les conditions des fournisseurs.
+        </p>
+        <p className="mt-2">
+          Que vous souhaitiez optimiser votre abonnement en partageant des places non utilisées ou que vous cherchiez à accéder à vos services préférés sans payer le plein tarif, Abo4You est la solution idéale.
+        </p>
+        <p className="mt-2">
+          Nous vous offrons une flexibilité totale : les places sont disponibles avec un paiement mensuel ou pour une plus longue période, selon votre préférence.
+        </p>
+        <p className="mt-2">
+          📩 Une question ? Besoin d'aide ? Contactez-nous directement via le chat (en bas à droite) ou sur facebook !
+        </p>
+        <p className="mt-2">
+          Rejoignez-nous dès maintenant et économisez sur vos abonnements ! 🚀
+        </p>
+      </div>
+
       <TawkMessengerReact
         propertyId="67be12d987b472191189bb6f"
         widgetId="1ikv7j8uq"
