@@ -92,7 +92,7 @@ export default function Page() {
       </header>
 
       {/* Search Bar */}
-      <div className="mb-4 w-full max-w-md mx-auto"> {/* Center the search bar */}
+      <div className="mb-2 w-full max-w-md mx-auto"> {/* Reduced margin to bring CategoryNav closer */}
         <input 
           type="text" 
           value={searchQuery} 
