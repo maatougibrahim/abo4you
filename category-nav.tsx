@@ -1,6 +1,6 @@
 const categories = [
   { name: "Tous", active: true },
-  { name: "SVOD", active: false },
+  { name: "Vidéo", active: false },
   { name: "Musique", active: false },
   { name: "Sécurité", active: false },
   { name: "Jeux vidéo", active: false },
@@ -8,7 +8,6 @@ const categories = [
   { name: "Lecture", active: false },
   { name: "E-commerce", active: false },
   { name: "Cloud", active: false },
-  { name: "Bien-être", active: false },
   { name: "Éducation", active: false },
 ]
 
