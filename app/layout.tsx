@@ -10,7 +10,6 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: 'Sub4you',
   description: 'Subscription sharing platform',
-  
 }
 
 export default function RootLayout({

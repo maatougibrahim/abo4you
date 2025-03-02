@@ -1,6 +1,6 @@
 "use client"
 
-import { Grid, MessageSquare, Search as SearchIcon } from "lucide-react"
+import { Grid, Search as SearchIcon } from "lucide-react"
 import Link from "next/link"
 import CategoryNav from "./category-nav"
 import ServiceCarousel from "./service-carousel"
@@ -68,6 +68,13 @@ export default function Page() {
         <div className="flex items-center gap-12">
           {/* Text Logo with Color #00E8DD */}
           <Link href="/" className="text-[#00E8DD] text-2xl font-bold">Sub4you</Link>
+        </div>
+
+        {/* Centered Facebook Redirect Button */}
+        <div className="flex flex-col items-center">
+          <Link href="https://www.facebook.com/profile.php?id=61573834613741" target="_blank" className="flex flex-col items-center text-white/80 hover:text-white">
+            <img src="/facebook-logo.png" alt="Facebook" className="h-10 w-10" /> {/* Increased size by 80% */}
+          </Link>
         </div>
 
         {/* Navigation Links and Language Toggle at the top right */}
