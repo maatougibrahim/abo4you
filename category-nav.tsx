@@ -18,7 +18,7 @@ export default function CategoryNav() {
         {categories.map((category) => (
           <li key={category.name}>
             <button
-              className={`rounded-full px-6 py-1 text-sm font-medium transition-colors ${
+              className={`rounded-full px-6 py-2 text-sm font-medium transition-colors ${
                 category.active ? "bg-[#00E8DD] text-white" : "bg-white/10 text-white hover:bg-white/20"
               }`}
             >
