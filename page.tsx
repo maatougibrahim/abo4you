@@ -110,7 +110,7 @@ export default function Page() {
 
       <CategoryNav />
 
-      <main className="relative bg-white pt-16">
+      <main className="relative bg-white pt-16 mt-16" >
         <div
           className="absolute inset-x-0 -top-8 h-16 bg-[#1a0f40]"
           style={{

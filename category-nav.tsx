@@ -2,13 +2,7 @@ const categories = [
   { name: "Tous", active: true },
   { name: "Vidéo", active: false },
   { name: "Musique", active: false },
-  { name: "Sécurité", active: false },
-  { name: "Jeux vidéo", active: false },
-  { name: "Logiciel", active: false },
-  { name: "Lecture", active: false },
-  { name: "E-commerce", active: false },
   { name: "Cloud", active: false },
-  { name: "Éducation", active: false },
 ]
 
 export default function CategoryNav() {
