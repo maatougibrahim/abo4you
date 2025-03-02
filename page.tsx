@@ -70,23 +70,11 @@ export default function Page() {
           <Link href="/" className="text-[#00E8DD] text-2xl font-bold">Sub4you</Link>
         </div>
 
-        {/* Centered Facebook Redirect Button */}
-        <div className="flex flex-col items-center">
+        {/* Language Toggle with Flags */}
+        <div className="flex items-center gap-4">
+          {/* Centered Facebook Redirect Button */}
           <Link href="https://www.facebook.com/profile.php?id=61573834613741" target="_blank" className="flex flex-col items-center text-white/80 hover:text-white">
             <img src="/facebook-logo.png" alt="Facebook" className="h-10 w-10" /> {/* Increased size by 80% */}
-          </Link>
-        </div>
-
-        {/* Navigation Links and Language Toggle at the top right */}
-        <div className="flex items-center gap-4">
-          <Link href="/subscriptions" className="flex flex-col items-center text-white/80 hover:text-white">
-            <Grid className="h-6 w-6" />
-            <span className="text-sm">Accueil</span>
-          </Link>
-          
-          <Link href="/about" className="flex flex-col items-center text-white">
-            <SearchIcon className="h-6 w-6" />
-            <span className="text-sm">À propos de nous</span>
           </Link>
 
           {/* Language Toggle with Flags */}
